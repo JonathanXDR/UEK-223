@@ -34,6 +34,14 @@ public class ApplicationUserController {
     return applicationUserService.findAll();
   }
 
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(summary = "Get a user.", description = "Return one user.")
+  @Path("/{id}")
+  public ApplicationUser show(@PathParam("id") long id) {
+    return applicationUserService.findById(id);
+  }
+
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)

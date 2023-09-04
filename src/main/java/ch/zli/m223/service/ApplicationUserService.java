@@ -18,6 +18,31 @@ public class ApplicationUserService {
   @Inject
   EntityManager entityManager;
 
+  public List<ApplicationUser> findAll() {
+    var query = entityManager.createQuery(
+      "FROM ApplicationUser",
+      ApplicationUser.class
+    );
+    return query.getResultList();
+  }
+
+  public ApplicationUser findById(long id) {
+    var user = entityManager.find(ApplicationUser.class, id);
+    if (user == null) {
+      throw new NotFoundException();
+    }
+    return user;
+  }
+
+  public Optional<ApplicationUser> findByEmail(String email) {
+    var user = entityManager
+      .createNamedQuery("ApplicationUser.findByEmail", ApplicationUser.class)
+      .setParameter("email", email)
+      .getResultStream()
+      .findFirst();
+    return user;
+  }
+
   @Transactional
   public ApplicationUser createApplicationUser(
     ApplicationUser applicationUser
@@ -38,16 +63,6 @@ public class ApplicationUserService {
   }
 
   @Transactional
-  public void deleteApplicationUser(Long id) {
-    var applicationUser = entityManager.find(ApplicationUser.class, id);
-    if (applicationUser == null) {
-      throw new NotFoundException();
-    }
-    applicationUser.getBookings().forEach(b -> entityManager.remove(b));
-    entityManager.remove(applicationUser);
-  }
-
-  @Transactional
   public ApplicationUser updateApplicationUser(
     ApplicationUser newApplicationUser
   ) {
@@ -55,28 +70,13 @@ public class ApplicationUserService {
     return newApplicationUser;
   }
 
-  public List<ApplicationUser> findAll() {
-    var query = entityManager.createQuery(
-      "FROM ApplicationUser",
-      ApplicationUser.class
-    );
-    return query.getResultList();
-  }
-
-  public Optional<ApplicationUser> findByEmail(String email) {
-    var user = entityManager
-      .createNamedQuery("ApplicationUser.findByEmail", ApplicationUser.class)
-      .setParameter("email", email)
-      .getResultStream()
-      .findFirst();
-    return user;
-  }
-
-  public ApplicationUser findById(long id) {
-    var user = entityManager.find(ApplicationUser.class, id);
-    if (user == null) {
+  @Transactional
+  public void deleteApplicationUser(Long id) {
+    var applicationUser = entityManager.find(ApplicationUser.class, id);
+    if (applicationUser == null) {
       throw new NotFoundException();
     }
-    return user;
+    applicationUser.getBookings().forEach(b -> entityManager.remove(b));
+    entityManager.remove(applicationUser);
   }
 }

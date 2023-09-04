@@ -47,6 +47,14 @@ public class BookingController {
     return bookingService.findAll();
   }
 
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(summary = "Get a booking.", description = "Return one booking.")
+  @Path("/{id}")
+  public Booking show(@PathParam("id") long id) {
+    return bookingService.findById(id);
+  }
+
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)

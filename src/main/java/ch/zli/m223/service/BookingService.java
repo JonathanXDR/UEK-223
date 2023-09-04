@@ -14,10 +14,29 @@ public class BookingService {
   @Inject
   EntityManager entityManager;
 
+  public List<Booking> findAll() {
+    var query = entityManager.createQuery("FROM Booking", Booking.class);
+    return query.getResultList();
+  }
+
+  public Booking findById(long id) {
+    var booking = entityManager.find(Booking.class, id);
+    if (booking == null) {
+      throw new NotFoundException();
+    }
+    return booking;
+  }
+
   @Transactional
   public Booking createBooking(Booking booking) {
     entityManager.persist(booking);
     return booking;
+  }
+
+  @Transactional
+  public Booking updateBooking(Booking newbooking) {
+    entityManager.merge(newbooking);
+    return newbooking;
   }
 
   @Transactional
@@ -27,16 +46,5 @@ public class BookingService {
       throw new NotFoundException();
     }
     entityManager.remove(booking);
-  }
-
-  @Transactional
-  public Booking updateBooking(Booking newbooking) {
-    entityManager.merge(newbooking);
-    return newbooking;
-  }
-
-  public List<Booking> findAll() {
-    var query = entityManager.createQuery("FROM Booking", Booking.class);
-    return query.getResultList();
   }
 }
