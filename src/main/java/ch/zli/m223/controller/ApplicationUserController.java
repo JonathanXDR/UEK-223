@@ -28,7 +28,7 @@ public class ApplicationUserController {
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  @Operation(summary = "Returns all users.", description = "Returns all users.")
+  @Operation(summary = "Get all users.", description = "Returns all users.")
   @RolesAllowed("admin")
   public List<ApplicationUser> index() {
     return applicationUserService.findAll();
@@ -38,17 +38,14 @@ public class ApplicationUserController {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   @PermitAll
-  @Operation(
-    summary = "Creates a new user.",
-    description = "Creates a new user."
-  )
+  @Operation(summary = "Create a user.", description = "Creates a user.")
   public ApplicationUser create(@Valid ApplicationUser applicationUser) {
     applicationUser.setPassword(applicationUser.getPassword());
     return applicationUserService.createApplicationUser(applicationUser);
   }
 
   @DELETE
-  @Operation(summary = "Deletes a user.", description = "Deletes a user.")
+  @Operation(summary = "Delete a user.", description = "Deletes a user.")
   @Path("/{id}")
   @RolesAllowed("admin")
   public void delete(@PathParam("id") long id) {
@@ -58,7 +55,7 @@ public class ApplicationUserController {
   @PUT
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  @Operation(summary = "Updates a user.", description = "Updates a user.")
+  @Operation(summary = "Update a user.", description = "Updates a user.")
   @Path("/{id}")
   @RolesAllowed("admin")
   public ApplicationUser update(
