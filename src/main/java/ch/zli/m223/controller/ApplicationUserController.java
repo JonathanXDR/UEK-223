@@ -54,14 +54,6 @@ public class ApplicationUserController {
     return applicationUserService.createApplicationUser(applicationUser);
   }
 
-  @DELETE
-  @Operation(summary = "Delete a user.", description = "Deletes a user.")
-  @Path("/{id}")
-  @RolesAllowed("Admin")
-  public void delete(@PathParam("id") Long id) {
-    applicationUserService.deleteApplicationUser(id);
-  }
-
   @PUT
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
@@ -75,4 +67,13 @@ public class ApplicationUserController {
     applicationUser.setId(id);
     return applicationUserService.updateApplicationUser(applicationUser);
   }
+
+  @DELETE
+  @Operation(summary = "Delete a user.", description = "Deletes a user.")
+  @Path("/{id}")
+  @RolesAllowed("Admin")
+  public void delete(@PathParam("id") Long id) {
+    applicationUserService.deleteApplicationUser(id);
+  }
+
 }

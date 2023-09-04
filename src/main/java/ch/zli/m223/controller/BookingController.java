@@ -66,13 +66,6 @@ public class BookingController {
     return bookingService.createBooking(booking);
   }
 
-  @DELETE
-  @Operation(summary = "Delete a booking.", description = "Deletes a booking.")
-  @Path("/{id}")
-  public void delete(@PathParam("id") Long id) {
-    bookingService.deleteBooking(id);
-  }
-
   @PUT
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
@@ -82,4 +75,12 @@ public class BookingController {
     booking.setId(id);
     return bookingService.updateBooking(booking);
   }
+
+  @DELETE
+  @Operation(summary = "Delete a booking.", description = "Deletes a booking.")
+  @Path("/{id}")
+  public void delete(@PathParam("id") Long id) {
+    bookingService.deleteBooking(id);
+  }
+
 }
