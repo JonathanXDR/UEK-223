@@ -14,7 +14,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 @Path("/login")
-@Tag(name = "Auth", description = "Handling of authentication.")
+@Tag(name = "Auth", description = "Handling of authentication")
 public class SessionController {
 
   @Inject
@@ -23,7 +23,7 @@ public class SessionController {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  @Operation(summary = "Allows the user to login.", description = "This endpoint allows the user to login. On successful login, a JWT (valid for 24 hours) will be returned in the Authorization header.")
+  @Operation(summary = "Allows the user to login", description = "This endpoint allows the user to login. On successful login, a JWT (valid for 24 hours) will be returned in the Authorization header")
   public Response login(Credential credential) {
     return sessionService.authenticate(credential);
   }

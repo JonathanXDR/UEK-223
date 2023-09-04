@@ -35,20 +35,20 @@ public class ApplicationUser {
   private RoleEnum role;
 
   @Column(nullable = false)
-  @NotBlank(message = "first name may not be blank.")
+  @NotBlank(message = "first name may not be blank")
   private String firstName;
 
   @Column(nullable = false)
-  @NotBlank(message = "last name may not be blank.")
+  @NotBlank(message = "last name may not be blank")
   private String lastName;
 
   @Column(nullable = false, unique = true)
-  @NotBlank(message = "Email may not be blank.")
+  @NotBlank(message = "Email may not be blank")
   @Email
   private String email;
 
   @Column(nullable = false)
-  @Length(min = 8, message = "Password has to be at least 8 characters.")
+  @Length(min = 8, message = "Password has to be at least 8 characters")
   private String password;
 
   @OneToMany(mappedBy = "applicationUser")
@@ -58,10 +58,10 @@ public class ApplicationUser {
   private Set<Feedback> feedbacks;
 
   public ApplicationUser(
-      @NotBlank(message = "Email may not be blank.") @Email String email,
-      @NotBlank(message = "first name may not be blank.") String firstName,
-      @NotBlank(message = "last name may not be blank.") String lastName,
-      @Length(min = 8, message = "Password has to be at least 8 characters.") String password,
+      @NotBlank(message = "Email may not be blank") @Email String email,
+      @NotBlank(message = "first name may not be blank") String firstName,
+      @NotBlank(message = "last name may not be blank") String lastName,
+      @Length(min = 8, message = "Password has to be at least 8 characters") String password,
       RoleEnum role) {
     this.role = role;
     this.firstName = firstName;

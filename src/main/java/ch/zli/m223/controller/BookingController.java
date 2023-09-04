@@ -25,7 +25,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.SecurityContext;
 
 @Path("/bookings")
-@Tag(name = "Bookings", description = "Handling of bookings.")
+@Tag(name = "Bookings", description = "Handling of bookings")
 @RolesAllowed({ "Member", "Admin" })
 public class BookingController {
 
@@ -41,14 +41,14 @@ public class BookingController {
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  @Operation(summary = "Get all bookings.", description = "Returns all bookings.")
+  @Operation(summary = "Get all bookings", description = "Returns all bookings")
   public List<Booking> index() {
     return bookingService.findAll();
   }
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  @Operation(summary = "Get a booking.", description = "Return one booking.")
+  @Operation(summary = "Get a booking", description = "Return one booking")
   @Path("/{id}")
   public Booking show(@PathParam("id") Long id) {
     return bookingService.findById(id);
@@ -57,7 +57,7 @@ public class BookingController {
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  @Operation(summary = "Create a booking.", description = "Creates a new booking.")
+  @Operation(summary = "Create a booking", description = "Creates a new booking")
   public Booking create(@Valid Booking booking) {
     var user = userService.findByEmail(ctx.getUserPrincipal().getName());
     assert user.isPresent();
@@ -69,7 +69,7 @@ public class BookingController {
   @PUT
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  @Operation(summary = "Update a booking.", description = "Updates a booking.")
+  @Operation(summary = "Update a booking", description = "Updates a booking")
   @Path("/{id}")
   public Booking update(@Valid Booking booking, @PathParam("id") Long id) {
     booking.setId(id);
@@ -77,7 +77,7 @@ public class BookingController {
   }
 
   @DELETE
-  @Operation(summary = "Delete a booking.", description = "Deletes a booking.")
+  @Operation(summary = "Delete a booking", description = "Deletes a booking")
   @Path("/{id}")
   public void delete(@PathParam("id") Long id) {
     bookingService.deleteBooking(id);

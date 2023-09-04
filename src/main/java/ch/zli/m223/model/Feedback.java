@@ -26,11 +26,11 @@ public class Feedback {
   private LocalDate date;
 
   @Column(nullable = false)
-  @NotBlank(message = "Title may not be blank.")
+  @NotBlank(message = "Title may not be blank")
   private String title;
 
   @Column(nullable = false)
-  @NotBlank(message = "Description may not be blank.")
+  @NotBlank(message = "Description may not be blank")
   private String description;
 
   @ManyToOne

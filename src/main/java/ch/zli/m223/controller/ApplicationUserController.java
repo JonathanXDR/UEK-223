@@ -22,7 +22,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
 @Path("/users")
-@Tag(name = "Users", description = "Handling of users.")
+@Tag(name = "Users", description = "Handling of users")
 public class ApplicationUserController {
 
   @Inject
@@ -30,7 +30,7 @@ public class ApplicationUserController {
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  @Operation(summary = "Get all users.", description = "Returns all users.")
+  @Operation(summary = "Get all users", description = "Returns all users")
   @RolesAllowed("Admin")
   public List<ApplicationUser> index() {
     return applicationUserService.findAll();
@@ -38,7 +38,7 @@ public class ApplicationUserController {
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  @Operation(summary = "Get a user.", description = "Return one user.")
+  @Operation(summary = "Get a user", description = "Return one user")
   @Path("/{id}")
   public ApplicationUser show(@PathParam("id") Long id) {
     return applicationUserService.findById(id);
@@ -48,7 +48,7 @@ public class ApplicationUserController {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   @PermitAll
-  @Operation(summary = "Create a user.", description = "Creates a user.")
+  @Operation(summary = "Create a user", description = "Creates a user")
   public ApplicationUser create(@Valid ApplicationUser applicationUser) {
     applicationUser.setPassword(applicationUser.getPassword());
     return applicationUserService.createApplicationUser(applicationUser);
@@ -57,7 +57,7 @@ public class ApplicationUserController {
   @PUT
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  @Operation(summary = "Update a user.", description = "Updates a user.")
+  @Operation(summary = "Update a user", description = "Updates a user")
   @Path("/{id}")
   @RolesAllowed("Admin")
   public ApplicationUser update(
@@ -69,7 +69,7 @@ public class ApplicationUserController {
   }
 
   @DELETE
-  @Operation(summary = "Delete a user.", description = "Deletes a user.")
+  @Operation(summary = "Delete a user", description = "Deletes a user")
   @Path("/{id}")
   @RolesAllowed("Admin")
   public void delete(@PathParam("id") Long id) {

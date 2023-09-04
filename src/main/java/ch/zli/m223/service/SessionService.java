@@ -46,7 +46,7 @@ public class SessionService {
             .build();
       }
     } catch (Exception e) {
-      System.err.println("Couldn't validate password.");
+      System.err.println("Couldn't validate password");
     }
 
     return Response.status(Response.Status.FORBIDDEN).build();
