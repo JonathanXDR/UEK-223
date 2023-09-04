@@ -3,6 +3,7 @@ package ch.zli.m223.service;
 import ch.zli.m223.model.ApplicationUser;
 import ch.zli.m223.model.Booking;
 import ch.zli.m223.model.Feedback;
+import ch.zli.m223.model.RoleEnum;
 import ch.zli.m223.model.StatusEnum;
 import ch.zli.m223.model.TimeFrameEnum;
 import io.quarkus.arc.profile.IfBuildProfile;
@@ -21,71 +22,54 @@ public class TestDataService {
   EntityManager entityManager;
 
   @Transactional
+  public void clearData() {
+    entityManager.createNativeQuery("TRUNCATE TABLE Booking RESTART IDENTITY CASCADE")
+        .executeUpdate();
+    entityManager.createNativeQuery("TRUNCATE TABLE ApplicationUser RESTART IDENTITY CASCADE")
+        .executeUpdate();
+  }
+
+  @Transactional
   void generateTestData(@Observes StartupEvent event) {
+    clearData();
+
     // ApplicationUsers
-    var ApplicationUserA = new ApplicationUser();
-    ApplicationUserA.setFirstName("User A first name");
-    ApplicationUserA.setLastName("User A last name");
-    ApplicationUserA.setEmail("application-user-a@user.com");
-    ApplicationUserA.setPassword("ApplicationUserA");
+    var ApplicationUserA = new ApplicationUser("application-user-a@user.com", "User A first name", "User A last name",
+        "ApplicationUserA", RoleEnum.ADMIN);
     entityManager.persist(ApplicationUserA);
 
-    var ApplicationUserB = new ApplicationUser();
-    ApplicationUserB.setFirstName("User B first name");
-    ApplicationUserB.setLastName("User B last name");
-    ApplicationUserB.setEmail("application-user-b@user.com");
-    ApplicationUserB.setPassword("ApplicationUserB");
+    var ApplicationUserB = new ApplicationUser("application-user-b@user.com", "User B first name", "User B last name",
+        "ApplicationUserB", RoleEnum.MEMBER);
     entityManager.persist(ApplicationUserB);
 
-    var ApplicationUserC = new ApplicationUser();
-    ApplicationUserC.setFirstName("User C first name");
-    ApplicationUserC.setLastName("User C last name");
-    ApplicationUserC.setEmail("application-user-c@user.com");
-    ApplicationUserC.setPassword("ApplicationUserC");
+    var ApplicationUserC = new ApplicationUser("application-user-c@user.com", "User C first name", "User C last name",
+        "ApplicationUserC", RoleEnum.MEMBER);
     entityManager.persist(ApplicationUserC);
 
     // Bookings
-    var BookingA = new Booking();
-    BookingA.setDate(java.time.LocalDate.now());
-    BookingA.setTimeFrame(TimeFrameEnum.MORNING);
-    BookingA.setStatus(StatusEnum.PENDING);
-    BookingA.setApplicationUser(ApplicationUserA);
+    var BookingA = new Booking(java.time.LocalDate.now(), TimeFrameEnum.MORNING, StatusEnum.PENDING,
+        ApplicationUserA);
     entityManager.persist(BookingA);
 
-    var BookingB = new Booking();
-    BookingB.setDate(java.time.LocalDate.now());
-    BookingB.setTimeFrame(TimeFrameEnum.AFTERNOON);
-    BookingB.setStatus(StatusEnum.PENDING);
-    BookingB.setApplicationUser(ApplicationUserB);
+    var BookingB = new Booking(java.time.LocalDate.now(), TimeFrameEnum.AFTERNOON, StatusEnum.CONFIRMED,
+        ApplicationUserB);
     entityManager.persist(BookingB);
 
-    var BookingC = new Booking();
-    BookingC.setDate(java.time.LocalDate.now());
-    BookingC.setTimeFrame(TimeFrameEnum.FULL_DAY);
-    BookingC.setStatus(StatusEnum.PENDING);
-    BookingC.setApplicationUser(ApplicationUserC);
+    var BookingC = new Booking(java.time.LocalDate.now(), TimeFrameEnum.FULL_DAY, StatusEnum.DECLINED,
+        ApplicationUserC);
     entityManager.persist(BookingC);
 
     // Feedbacks
-    var FeedbackA = new Feedback();
-    FeedbackA.setDate(java.time.LocalDate.now());
-    FeedbackA.setTitle("Feedback A title");
-    FeedbackA.setDescription("Feedback A description");
-    FeedbackA.setApplicationUser(ApplicationUserA);
+    var FeedbackA = new Feedback(java.time.LocalDate.now(), "Feedback A title", "Feedback A description",
+        ApplicationUserA);
     entityManager.persist(FeedbackA);
 
-    var FeedbackB = new Feedback();
-    FeedbackB.setDate(java.time.LocalDate.now());
-    FeedbackB.setTitle("Feedback B title");
-    FeedbackB.setDescription("Feedback B description");
-    FeedbackB.setApplicationUser(ApplicationUserB);
+    var FeedbackB = new Feedback(java.time.LocalDate.now(), "Feedback B title", "Feedback B description",
+        ApplicationUserB);
     entityManager.persist(FeedbackB);
 
-    var FeedbackC = new Feedback();
-    FeedbackC.setDate(java.time.LocalDate.now());
-    FeedbackC.setTitle("Feedback C title");
-    FeedbackC.setDescription("Feedback C description");
-    FeedbackC.setApplicationUser(ApplicationUserC);
+    var FeedbackC = new Feedback(java.time.LocalDate.now(), "Feedback C title", "Feedback C description",
+        ApplicationUserC);
     entityManager.persist(FeedbackC);
   }
 }
