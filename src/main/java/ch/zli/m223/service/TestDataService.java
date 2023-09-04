@@ -46,18 +46,21 @@ public class TestDataService {
 
     // Bookings
     var BookingA = new Booking();
+    BookingA.setDate(java.time.LocalDate.now());
     BookingA.setTimeFrame(TimeFrameEnum.MORNING);
     BookingA.setStatus(StatusEnum.PENDING);
     BookingA.setApplicationUser(ApplicationUserA);
     entityManager.persist(BookingA);
 
     var BookingB = new Booking();
+    BookingB.setDate(java.time.LocalDate.now());
     BookingB.setTimeFrame(TimeFrameEnum.AFTERNOON);
     BookingB.setStatus(StatusEnum.PENDING);
     BookingB.setApplicationUser(ApplicationUserB);
     entityManager.persist(BookingB);
 
     var BookingC = new Booking();
+    BookingC.setDate(java.time.LocalDate.now());
     BookingC.setTimeFrame(TimeFrameEnum.FULL_DAY);
     BookingC.setStatus(StatusEnum.PENDING);
     BookingC.setApplicationUser(ApplicationUserC);
@@ -65,18 +68,21 @@ public class TestDataService {
 
     // Feedbacks
     var FeedbackA = new Feedback();
+    FeedbackA.setDate(java.time.LocalDate.now());
     FeedbackA.setTitle("Feedback A title");
     FeedbackA.setDescription("Feedback A description");
     FeedbackA.setApplicationUser(ApplicationUserA);
     entityManager.persist(FeedbackA);
 
     var FeedbackB = new Feedback();
+    FeedbackB.setDate(java.time.LocalDate.now());
     FeedbackB.setTitle("Feedback B title");
     FeedbackB.setDescription("Feedback B description");
     FeedbackB.setApplicationUser(ApplicationUserB);
     entityManager.persist(FeedbackB);
 
     var FeedbackC = new Feedback();
+    FeedbackC.setDate(java.time.LocalDate.now());
     FeedbackC.setTitle("Feedback C title");
     FeedbackC.setDescription("Feedback C description");
     FeedbackC.setApplicationUser(ApplicationUserC);
