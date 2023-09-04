@@ -1,5 +1,10 @@
 package ch.zli.m223.controller;
 
+import java.util.List;
+
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
 import ch.zli.m223.model.Booking;
 import ch.zli.m223.model.StatusEnum;
 import ch.zli.m223.service.ApplicationUserService;
@@ -18,13 +23,10 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.SecurityContext;
-import java.util.List;
-import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 @Path("/bookings")
 @Tag(name = "Bookings", description = "Handling of bookings.")
-@RolesAllowed({ "member", "admin" })
+@RolesAllowed({ "Member", "Admin" })
 public class BookingController {
 
   @Inject
@@ -51,7 +53,7 @@ public class BookingController {
   @Produces(MediaType.APPLICATION_JSON)
   @Operation(summary = "Get a booking.", description = "Return one booking.")
   @Path("/{id}")
-  public Booking show(@PathParam("id") long id) {
+  public Booking show(@PathParam("id") Long id) {
     return bookingService.findById(id);
   }
 
@@ -73,7 +75,7 @@ public class BookingController {
   @DELETE
   @Operation(summary = "Delete a booking.", description = "Deletes a booking.")
   @Path("/{id}")
-  public void delete(@PathParam("id") long id) {
+  public void delete(@PathParam("id") Long id) {
     bookingService.deleteBooking(id);
   }
 
@@ -82,7 +84,7 @@ public class BookingController {
   @Consumes(MediaType.APPLICATION_JSON)
   @Operation(summary = "Update a booking.", description = "Updates a booking.")
   @Path("/{id}")
-  public Booking update(@Valid Booking booking, @PathParam("id") long id) {
+  public Booking update(@Valid Booking booking, @PathParam("id") Long id) {
     booking.setId(id);
     return bookingService.updateBooking(booking);
   }

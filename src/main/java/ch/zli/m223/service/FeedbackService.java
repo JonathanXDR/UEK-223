@@ -1,12 +1,13 @@
 package ch.zli.m223.service;
 
+import java.util.List;
+
 import ch.zli.m223.model.Feedback;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
-import java.util.List;
 
 @ApplicationScoped
 public class FeedbackService {
@@ -19,7 +20,7 @@ public class FeedbackService {
     return query.getResultList();
   }
 
-  public Feedback findById(long id) {
+  public Feedback findById(Long id) {
     var feedback = entityManager.find(Feedback.class, id);
     if (feedback == null) {
       throw new NotFoundException();

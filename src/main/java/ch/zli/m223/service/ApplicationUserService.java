@@ -1,5 +1,8 @@
 package ch.zli.m223.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import ch.zli.m223.model.ApplicationUser;
 import ch.zli.m223.model.RoleEnum;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -9,8 +12,6 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
-import java.util.List;
-import java.util.Optional;
 
 @ApplicationScoped
 public class ApplicationUserService {
@@ -26,7 +27,7 @@ public class ApplicationUserService {
     return query.getResultList();
   }
 
-  public ApplicationUser findById(long id) {
+  public ApplicationUser findById(Long id) {
     var user = entityManager.find(ApplicationUser.class, id);
     if (user == null) {
       throw new NotFoundException();

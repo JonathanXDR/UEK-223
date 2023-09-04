@@ -1,5 +1,10 @@
 package ch.zli.m223.controller;
 
+import java.util.List;
+
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
 import ch.zli.m223.model.ApplicationUser;
 import ch.zli.m223.service.ApplicationUserService;
 import jakarta.annotation.security.PermitAll;
@@ -15,9 +20,6 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import java.util.List;
-import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 @Path("/users")
 @Tag(name = "Users", description = "Handling of users.")
@@ -29,7 +31,7 @@ public class ApplicationUserController {
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   @Operation(summary = "Get all users.", description = "Returns all users.")
-  @RolesAllowed("admin")
+  @RolesAllowed("Admin")
   public List<ApplicationUser> index() {
     return applicationUserService.findAll();
   }
@@ -38,7 +40,7 @@ public class ApplicationUserController {
   @Produces(MediaType.APPLICATION_JSON)
   @Operation(summary = "Get a user.", description = "Return one user.")
   @Path("/{id}")
-  public ApplicationUser show(@PathParam("id") long id) {
+  public ApplicationUser show(@PathParam("id") Long id) {
     return applicationUserService.findById(id);
   }
 
@@ -55,8 +57,8 @@ public class ApplicationUserController {
   @DELETE
   @Operation(summary = "Delete a user.", description = "Deletes a user.")
   @Path("/{id}")
-  @RolesAllowed("admin")
-  public void delete(@PathParam("id") long id) {
+  @RolesAllowed("Admin")
+  public void delete(@PathParam("id") Long id) {
     applicationUserService.deleteApplicationUser(id);
   }
 
@@ -65,10 +67,10 @@ public class ApplicationUserController {
   @Consumes(MediaType.APPLICATION_JSON)
   @Operation(summary = "Update a user.", description = "Updates a user.")
   @Path("/{id}")
-  @RolesAllowed("admin")
+  @RolesAllowed("Admin")
   public ApplicationUser update(
     @Valid ApplicationUser applicationUser,
-    @PathParam("id") long id
+    @PathParam("id") Long id
   ) {
     applicationUser.setPassword(applicationUser.getPassword());
     applicationUser.setId(id);

@@ -1,5 +1,10 @@
 package ch.zli.m223.controller;
 
+import java.util.List;
+
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
 import ch.zli.m223.model.Feedback;
 import ch.zli.m223.service.ApplicationUserService;
 import ch.zli.m223.service.FeedbackService;
@@ -15,13 +20,10 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.SecurityContext;
-import java.util.List;
-import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 @Path("/feedbacks")
 @Tag(name = "Feedbacks", description = "Handling of feedbacks.")
-@RolesAllowed({ "member", "admin" })
+@RolesAllowed({ "Member", "Admin" })
 public class FeedbackController {
 
   @Inject
@@ -48,7 +50,7 @@ public class FeedbackController {
   @Produces(MediaType.APPLICATION_JSON)
   @Operation(summary = "Get a feedback.", description = "Return one feedback.")
   @Path("/{id}")
-  public Feedback show(@PathParam("id") long id) {
+  public Feedback show(@PathParam("id") Long id) {
     return feedbackService.findById(id);
   }
 

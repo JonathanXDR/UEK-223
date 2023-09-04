@@ -1,12 +1,13 @@
 package ch.zli.m223.service;
 
+import java.util.List;
+
 import ch.zli.m223.model.Booking;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
-import java.util.List;
 
 @ApplicationScoped
 public class BookingService {
@@ -19,7 +20,7 @@ public class BookingService {
     return query.getResultList();
   }
 
-  public Booking findById(long id) {
+  public Booking findById(Long id) {
     var booking = entityManager.find(Booking.class, id);
     if (booking == null) {
       throw new NotFoundException();
