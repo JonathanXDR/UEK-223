@@ -37,11 +37,10 @@ public class Feedback {
   private ApplicationUser applicationUser;
 
   public Feedback(
-      LocalDate date,
       String title,
       String description,
       ApplicationUser applicationUser) {
-    this.date = date;
+    this.date = LocalDate.now();
     this.title = title;
     this.description = description;
     this.applicationUser = applicationUser;
@@ -63,7 +62,7 @@ public class Feedback {
   }
 
   public void setDate(LocalDate date) {
-    this.date = date;
+    this.date = LocalDate.now();
   }
 
   public String getTitle() {
