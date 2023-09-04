@@ -12,7 +12,7 @@ Punch Clock ist ein Zeiterfassungssystem, welches mit Quarkus entwickelt wird.
 1. Öffne das Projekt im Entwicklungscontainer.
 1. Starte das Projekt mit dem Kommando `Quarkus: Debug current Quarkus Project`
 1. Probiere die Client-Applikation unter <http://localhost:8080> aus.
-1. Schaue die API auf <http://localhost:8080/q/swagger-ui/> an.
+1. Schaue die API auf <http://localhost:8080/swagger/> an.
 
 ## Datenbank
 
