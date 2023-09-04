@@ -69,9 +69,8 @@ public class ApplicationUserController {
   @Path("/{id}")
   @RolesAllowed("Admin")
   public ApplicationUser update(
-    @Valid ApplicationUser applicationUser,
-    @PathParam("id") Long id
-  ) {
+      @Valid ApplicationUser applicationUser,
+      @PathParam("id") Long id) {
     applicationUser.setPassword(applicationUser.getPassword());
     applicationUser.setId(id);
     return applicationUserService.updateApplicationUser(applicationUser);

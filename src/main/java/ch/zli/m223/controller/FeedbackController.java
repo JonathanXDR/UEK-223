@@ -38,10 +38,7 @@ public class FeedbackController {
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  @Operation(
-    summary = "Get all feedbacks.",
-    description = "Returns all feedbacks."
-  )
+  @Operation(summary = "Get all feedbacks.", description = "Returns all feedbacks.")
   public List<Feedback> index() {
     return feedbackService.findAll();
   }
@@ -57,10 +54,7 @@ public class FeedbackController {
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  @Operation(
-    summary = "Create a feedback.",
-    description = "Creates a new feedback."
-  )
+  @Operation(summary = "Create a feedback.", description = "Creates a new feedback.")
   public Feedback create(@Valid Feedback feedback) {
     var user = userService.findByEmail(ctx.getUserPrincipal().getName());
     assert user.isPresent();

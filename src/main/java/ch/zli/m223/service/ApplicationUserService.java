@@ -21,9 +21,8 @@ public class ApplicationUserService {
 
   public List<ApplicationUser> findAll() {
     var query = entityManager.createQuery(
-      "FROM ApplicationUser",
-      ApplicationUser.class
-    );
+        "FROM ApplicationUser",
+        ApplicationUser.class);
     return query.getResultList();
   }
 
@@ -37,17 +36,16 @@ public class ApplicationUserService {
 
   public Optional<ApplicationUser> findByEmail(String email) {
     var user = entityManager
-      .createNamedQuery("ApplicationUser.findByEmail", ApplicationUser.class)
-      .setParameter("email", email)
-      .getResultStream()
-      .findFirst();
+        .createNamedQuery("ApplicationUser.findByEmail", ApplicationUser.class)
+        .setParameter("email", email)
+        .getResultStream()
+        .findFirst();
     return user;
   }
 
   @Transactional
   public ApplicationUser createApplicationUser(
-    ApplicationUser applicationUser
-  ) {
+      ApplicationUser applicationUser) {
     CriteriaBuilder cb = entityManager.getCriteriaBuilder();
     CriteriaQuery<Long> cq = cb.createQuery(Long.class);
     cq.select(cb.count(cq.from(ApplicationUser.class)));
@@ -65,8 +63,7 @@ public class ApplicationUserService {
 
   @Transactional
   public ApplicationUser updateApplicationUser(
-    ApplicationUser newApplicationUser
-  ) {
+      ApplicationUser newApplicationUser) {
     entityManager.merge(newApplicationUser);
     return newApplicationUser;
   }

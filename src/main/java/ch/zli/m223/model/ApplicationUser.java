@@ -1,6 +1,12 @@
 package ch.zli.m223.model;
 
+import java.util.Set;
+
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.hibernate.validator.constraints.Length;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -13,19 +19,11 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import java.util.Set;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
-import org.hibernate.validator.constraints.Length;
 
 @Entity
-@NamedQueries(
-  {
-    @NamedQuery(
-      name = "ApplicationUser.findByEmail",
-      query = "SELECT u FROM ApplicationUser u WHERE u.email = :email"
-    ),
-  }
-)
+@NamedQueries({
+    @NamedQuery(name = "ApplicationUser.findByEmail", query = "SELECT u FROM ApplicationUser u WHERE u.email = :email"),
+})
 public class ApplicationUser {
 
   @Id
@@ -60,15 +58,11 @@ public class ApplicationUser {
   private Set<Feedback> feedbacks;
 
   public ApplicationUser(
-    @NotBlank(message = "Email may not be blank.") @Email String email,
-    @NotBlank(message = "first name may not be blank.") String firstName,
-    @NotBlank(message = "last name may not be blank.") String lastName,
-    @Length(
-      min = 8,
-      message = "Password has to be at least 8 characters."
-    ) String password,
-    RoleEnum role
-  ) {
+      @NotBlank(message = "Email may not be blank.") @Email String email,
+      @NotBlank(message = "first name may not be blank.") String firstName,
+      @NotBlank(message = "last name may not be blank.") String lastName,
+      @Length(min = 8, message = "Password has to be at least 8 characters.") String password,
+      RoleEnum role) {
     this.role = role;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -76,7 +70,8 @@ public class ApplicationUser {
     this.password = password;
   }
 
-  public ApplicationUser() {}
+  public ApplicationUser() {
+  }
 
   public Long getId() {
     return id;

@@ -1,5 +1,9 @@
 package ch.zli.m223.model;
 
+import java.time.LocalDate;
+
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -9,8 +13,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
-import java.time.LocalDate;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @Entity
 public class Booking {
@@ -37,18 +39,18 @@ public class Booking {
   private ApplicationUser applicationUser;
 
   public Booking(
-    LocalDate date,
-    TimeFrameEnum timeFrame,
-    StatusEnum status,
-    ApplicationUser applicationUser
-  ) {
+      LocalDate date,
+      TimeFrameEnum timeFrame,
+      StatusEnum status,
+      ApplicationUser applicationUser) {
     this.date = date;
     this.timeFrame = timeFrame;
     this.status = status;
     this.applicationUser = applicationUser;
   }
 
-  public Booking() {}
+  public Booking() {
+  }
 
   public Long getId() {
     return id;

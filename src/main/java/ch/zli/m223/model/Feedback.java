@@ -1,5 +1,9 @@
 package ch.zli.m223.model;
 
+import java.time.LocalDate;
+
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,8 +12,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import java.time.LocalDate;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @Entity
 public class Feedback {
@@ -35,18 +37,18 @@ public class Feedback {
   private ApplicationUser applicationUser;
 
   public Feedback(
-    LocalDate date,
-    String title,
-    String description,
-    ApplicationUser applicationUser
-  ) {
+      LocalDate date,
+      String title,
+      String description,
+      ApplicationUser applicationUser) {
     this.date = date;
     this.title = title;
     this.description = description;
     this.applicationUser = applicationUser;
   }
 
-  public Feedback() {}
+  public Feedback() {
+  }
 
   public Long getId() {
     return id;

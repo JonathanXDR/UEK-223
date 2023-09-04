@@ -41,10 +41,7 @@ public class BookingController {
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  @Operation(
-    summary = "Get all bookings.",
-    description = "Returns all bookings."
-  )
+  @Operation(summary = "Get all bookings.", description = "Returns all bookings.")
   public List<Booking> index() {
     return bookingService.findAll();
   }
@@ -60,10 +57,7 @@ public class BookingController {
   @POST
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
-  @Operation(
-    summary = "Create a booking.",
-    description = "Creates a new booking."
-  )
+  @Operation(summary = "Create a booking.", description = "Creates a new booking.")
   public Booking create(@Valid Booking booking) {
     var user = userService.findByEmail(ctx.getUserPrincipal().getName());
     assert user.isPresent();

@@ -21,26 +21,23 @@ public class SessionService {
 
   public Response authenticate(Credential credential) {
     Optional<ApplicationUser> principal = applicationUserService.findByEmail(
-      credential.getEmail()
-    );
+        credential.getEmail());
 
     try {
-      if (
-        principal.isPresent() &&
-        principal.get().getPassword().equals(credential.getPassword())
-      ) {
+      if (principal.isPresent() &&
+          principal.get().getPassword().equals(credential.getPassword())) {
         String token = Jwt
-          .issuer("https://zli.example.com/")
-          .upn(credential.getEmail())
-          .groups(new HashSet<>(Arrays.asList("User", "Admin")))
-          .expiresIn(Duration.ofHours(12))
-          .sign();
+            .issuer("https://zli.example.com/")
+            .upn(credential.getEmail())
+            .groups(new HashSet<>(Arrays.asList("User", "Admin")))
+            .expiresIn(Duration.ofHours(12))
+            .sign();
 
         return Response
-          .ok(principal.get())
-          .cookie(new NewCookie.Builder("jwt").value(token).build())
-          .header("Authorization", "Bearer " + token)
-          .build();
+            .ok(principal.get())
+            .cookie(new NewCookie.Builder("jwt").value(token).build())
+            .header("Authorization", "Bearer " + token)
+            .build();
       }
     } catch (Exception e) {
       System.err.println("Couldn't validate password.");
