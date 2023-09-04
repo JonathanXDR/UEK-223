@@ -1,4 +1,4 @@
-# Übungsprojekt: Punch Clock
+# UEK-223-Portfolio
 
 Punch Clock ist ein Zeiterfassungssystem, welches mit Quarkus entwickelt wird.
 
@@ -31,3 +31,8 @@ Die Daten werden in einer PostgreSQL-Datenbank gespeichert. In der Entwicklungsu
 ## Automatische Tests
 
 Die automatischen Tests können mit `./mvnw quarkus:test` ausgeführt werden. Für die automatischen Tests wird nicht die PostgreSQL-Datenbank verwendet, sondern eine H2-Datenbank, welche sich im Arbeitsspeicher während der Ausführung befindet.
+
+### Testdaten
+
+Es ist ein Testdatenset definiert, welches für die Developmentumgebung automatisch geladen wird.
+Es befindet sich in `src/main/java/ch/zli/m223/service/TestDataService.java`.
