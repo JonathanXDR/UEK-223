@@ -1,0 +1,227 @@
+commit 5cd363fda9249548f54c1071291f836eba2ef973
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Tue Sep 5 16:15:50 2023 +0200
+
+    chore(docs): update README
+
+commit f40c60733568b3c4161a8dbbfd7a23eddd550d2b
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Tue Sep 5 16:10:34 2023 +0200
+
+    chore(docs): update README
+
+commit e938ebd0dfc95614202a32cc18686c9998945c5b
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Tue Sep 5 16:03:28 2023 +0200
+
+    chore(tests): add routes to tests & cleanup controllers, services
+
+commit a120dd1bf7aaa1f7fb19eb38ab169c31caf51a62
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Tue Sep 5 14:41:03 2023 +0200
+
+    feat(controller test): add feedback controller test
+
+commit 35a626656f0dd49b8daeea772c39f4bc7b931bd0
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Tue Sep 5 14:40:37 2023 +0200
+
+    fix(test): update imports of tests
+
+commit 58257201cc19877cdec0c0ffc87f73274f55fccf
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Tue Sep 5 14:39:58 2023 +0200
+
+    fix(model): fix date of feedback
+
+commit 1fcae89a689f902d646cd8e9c679c9ac1b5bb483
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Tue Sep 5 14:39:35 2023 +0200
+
+    chore(controllers, services): update returns of controllers & services
+
+commit 31bd418b3fe9d0afbe59788871f0be62b9aa8307
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Tue Sep 5 13:18:44 2023 +0200
+
+    docs(readme): update readme files
+
+commit b3d9230ba0855ae1a845625d7ecb09fcda9ddfd4
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Tue Sep 5 12:55:16 2023 +0200
+
+    feat(service tests): add service testings
+
+commit 3eb480f1431cecdfd988d6b1c1a79eb3b9d6e5bd
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Tue Sep 5 12:54:57 2023 +0200
+
+    feat(controller tests): add controller testings
+
+commit 452f6f5b4b9ef405dfbc2a59e9a5555735bef4f9
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Tue Sep 5 11:09:42 2023 +0200
+
+    fix(return values, roles): update return values to string & fix user roles
+
+commit 8f99e4b0ab6ade5f704e1e518d0c046b062c1314
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Tue Sep 5 08:39:21 2023 +0200
+
+    chore(naming): update name of SessionService
+
+commit ec6229dad65050c51fad54fdf05c6d97de18a320
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 22:45:12 2023 +0200
+
+    chore(model): update feedback model to auto handle the date
+
+commit fbf7180ec4d899790a7520228fa8a790e5b58b17
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 22:40:49 2023 +0200
+
+    chore(service): update TestDataService
+
+commit f1fb337125fe6b624bd2f2425928ed2bc2fdec25
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 22:16:57 2023 +0200
+
+    chore(cleanup): format all files
+
+commit 7eda25cedf027ed0063eb6c37d86830c374df48a
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 21:09:37 2023 +0200
+
+    chore(cleanup): cleanup controllers
+
+commit 967e0761dd6851064289b919961c09c362b644b0
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 20:28:54 2023 +0200
+
+    feat(keys): add rsa keys
+
+commit 1e10f4e566e8e7b13e129fe4801cb7b4dd2a0ebc
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 20:20:48 2023 +0200
+
+    fix(application properties): fix duplicate swagger route
+
+commit 84f7cadc543ad5ce398d67495cbcebd2147aa679
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 20:15:51 2023 +0200
+
+    chore(application properties): add global url prefix & update swagger route
+
+commit cf65e4a59424f76b1f75d69b20b390cc9aa8c820
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 19:45:44 2023 +0200
+
+    chore(service): update SessionService with user roles
+
+commit e6a6953f5836742e34af028e79a3357d48f0087e
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 19:41:39 2023 +0200
+
+    chore(cleanup): format all files
+
+commit c29727e1fa4745587c7df4cd104ba9c5b90ff1fc
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 19:38:33 2023 +0200
+
+    feat(controller, service): add Session controller & service
+
+commit 65ef7f496facf6257b190d8534f996e9fde592b2
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 16:37:22 2023 +0200
+
+    chore(controllers, services): cleanup datatypes & naming
+
+commit e84df55835ab7783a2218c9f69cc7fcee8c42890
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 16:04:09 2023 +0200
+
+    chore(controller, service): add findById() method
+
+commit 0bab37ce82780c28dd1da2df409599fdd7a09f89
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 16:03:14 2023 +0200
+
+    feat(controller, service): add Feedback controller & service
+
+commit 3c709a16f6e8dfbe1f5788b3902d1a473875e8a3
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 15:52:12 2023 +0200
+
+    feat(controller, service): add Booking controller & service
+
+commit de7a350422fa737226348c2894518c9ad166ec7d
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 15:21:45 2023 +0200
+
+    feat(controller, service): add ApplicationUser controller & service
+
+commit d6f2671e98adcb59863ec21ecd81a125071c3653
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 14:41:36 2023 +0200
+
+    chore(service): update TestDataService with setDate methods
+
+commit d9c8e1c6d9f2f4c4263fb3647760dbe5f04513c4
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 14:24:59 2023 +0200
+
+    docs(README): add section for testdata & update main title
+
+commit b1fe3d4dc1a2a5a3a8dafc792da4bb9700649d63
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 14:19:38 2023 +0200
+
+    docs(README): update quarkus file & add zli default file
+
+commit decadb618fe6acc6b988a101c61bd65b85332758
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 14:08:46 2023 +0200
+
+    feat(service): add TestDataService
+
+commit daeac027a78a1021019ad8888ab27a8f85e7d7e2
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 13:38:36 2023 +0200
+
+    feat(models): add ApplicationUser, Booking, Credential, Feedback
+
+commit be468f75ceb58b0687cd1901cf941ec5d34910d5
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 11:39:27 2023 +0200
+
+    feat(enums): add all enums
+
+commit 47def5a5e8e7d9984f681e39495a9fd2fd5ef1cd
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 11:32:58 2023 +0200
+
+    chore(samples): remove sample files
+
+commit 272807806f9230e7f41a7ae8a2691a40b1d9ce48
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 11:28:06 2023 +0200
+
+    chore(naming): update project naming
+
+commit 3f2d664883305681f885fb0648cfabca992141f2
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 11:25:01 2023 +0200
+
+    fix(configs): fix dev container config files
+
+commit 617134dc3ae02c4d74832cc38a14db7bc3e1ac66
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Mon Sep 4 11:13:36 2023 +0200
+
+    feat(dev-container): add dev container config files
+
+commit 7e051f1d0f0e4c52b6b879d2dce4997c5b6fc40d
+Author: quarkusio <no-reply@quarkus.io>
+Date:   Mon Sep 4 08:43:05 2023 +0000
+
+    Initial commit
