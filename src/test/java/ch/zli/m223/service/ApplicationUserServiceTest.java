@@ -3,14 +3,13 @@ package ch.zli.m223.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import javax.inject.Inject;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ch.zli.m223.model.ApplicationUser;
 import ch.zli.m223.model.RoleEnum;
 import io.quarkus.test.junit.QuarkusTest;
+import jakarta.inject.Inject;
 
 @QuarkusTest
 public class ApplicationUserServiceTest {
