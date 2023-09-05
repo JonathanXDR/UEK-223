@@ -1,4 +1,4 @@
-package ch.zli.m223.model;
+package ch.zli.m223.model.dto;
 
 import org.hibernate.validator.constraints.Length;
 

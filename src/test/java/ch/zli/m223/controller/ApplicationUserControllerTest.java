@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.zli.m223.model.ApplicationUser;
 import ch.zli.m223.model.RoleEnum;
-import ch.zli.m223.service.TestDataService;
+import ch.zli.m223.service.TestDataServiceTest;
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.security.TestSecurity;
@@ -22,17 +22,17 @@ import jakarta.inject.Inject;
 public class ApplicationUserControllerTest {
 
   @Inject
-  TestDataService testDataService;
+  TestDataServiceTest testDataServiceTest;
 
   @BeforeEach
   public void reset() {
-    testDataService.generateTestData(null);
+    testDataServiceTest.generateTestData(null);
   }
 
   @Test
   @TestSecurity(user = "application-user-a@user.com", roles = "Admin")
   public void testIndexEndpoint() {
-    given().when().get().then().statusCode(200).body(startsWith("[")).and().body(endsWith("]"));
+    given().when().get("/users").then().statusCode(200).body(startsWith("[")).and().body(endsWith("]"));
   }
 
   @Test
@@ -41,17 +41,17 @@ public class ApplicationUserControllerTest {
         "ApplicationUserB",
         RoleEnum.MEMBER);
 
-    given().when().contentType(ContentType.JSON).body(payload).post().then().statusCode(200)
+    given().when().contentType(ContentType.JSON).body(payload).post("/users").then().statusCode(200)
         .body("email", is("application-user-b@user.com"));
   }
 
   @Test
-  public void testPostInvalid() {
+  public void testPostBadRequest() {
     var payload = new ApplicationUser();
     payload.setEmail("ThisIsNotAnEmail");
     payload.setPassword("Short");
 
-    given().when().contentType(ContentType.JSON).body(payload).post().then().statusCode(400);
+    given().when().contentType(ContentType.JSON).body(payload).post("/users").then().statusCode(400);
   }
 
   @Test
@@ -61,19 +61,25 @@ public class ApplicationUserControllerTest {
         "ApplicationUserA",
         RoleEnum.ADMIN);
 
-    var response = given().when().contentType(ContentType.JSON).body(payload).put("/3");
+    var response = given().when().contentType(ContentType.JSON).body(payload).put("/users" + 3);
     response.then().statusCode(200);
   }
 
   @Test
   @TestSecurity(user = "application-user-a@user.com", roles = "Admin")
+  public void testPutNotFound() {
+    given().when().put("/users" + 100).then().statusCode(404);
+  }
+
+  @Test
+  @TestSecurity(user = "application-user-a@user.com", roles = "Admin")
   public void testDeleteEndpoint() {
-    given().when().delete("/2").then().statusCode(204);
+    given().when().delete("/users" + 2).then().statusCode(200);
   }
 
   @Test
   @TestSecurity(user = "application-user-a@user.com", roles = "Admin")
   public void testDeleteNotFound() {
-    given().when().delete("/100").then().statusCode(404);
+    given().when().delete("/users" + 100).then().statusCode(404);
   }
 }

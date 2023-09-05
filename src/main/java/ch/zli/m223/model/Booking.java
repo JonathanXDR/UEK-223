@@ -12,7 +12,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Booking {
@@ -23,12 +22,10 @@ public class Booking {
   private Long id;
 
   @Column(nullable = false)
-  @NotNull
   private LocalDate date;
 
   @Column(nullable = false)
   @Enumerated(EnumType.STRING)
-  @NotNull
   private TimeFrameEnum timeFrame;
 
   @Column(nullable = false)

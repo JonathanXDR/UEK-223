@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import ch.zli.m223.model.Booking;
 import ch.zli.m223.model.StatusEnum;
 import ch.zli.m223.model.TimeFrameEnum;
-import ch.zli.m223.service.TestDataService;
+import ch.zli.m223.service.TestDataServiceTest;
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.security.TestSecurity;
@@ -26,16 +26,16 @@ import jakarta.inject.Inject;
 public class BookingControllerTest {
 
   @Inject
-  TestDataService testDataService;
+  TestDataServiceTest testDataServiceTest;
 
   @BeforeEach
   public void reset() {
-    testDataService.generateTestData(null);
+    testDataServiceTest.generateTestData(null);
   }
 
   @Test
   public void testIndexEndpoint() {
-    given().when().get().then().statusCode(200).body(startsWith("[")).and().body(endsWith("]"));
+    given().when().get("/bookings").then().statusCode(200).body(startsWith("[")).and().body(endsWith("]"));
   }
 
   @Test
@@ -47,10 +47,10 @@ public class BookingControllerTest {
   }
 
   @Test
-  public void testPostInvalid() {
+  public void testPostBadRequest() {
     var payload = new Booking();
 
-    given().when().contentType(ContentType.JSON).body(payload).post().then().statusCode(400);
+    given().when().contentType(ContentType.JSON).body(payload).post("/bookings").then().statusCode(400);
   }
 
   @Test
@@ -58,18 +58,23 @@ public class BookingControllerTest {
     var payload = new Booking(LocalDate.now().minusDays(1), TimeFrameEnum.FULL_DAY,
         StatusEnum.DECLINED, null);
 
-    given().when().contentType(ContentType.JSON).body(payload).put("/1").then().statusCode(200)
+    given().when().contentType(ContentType.JSON).body(payload).put("/bookings/" + 1).then().statusCode(200)
         .body("date", is(payload.getDate().toString())).body("timeFrame", is("FULL_DAY"));
   }
 
   @Test
+  public void testPutNotFound() {
+    given().when().put("/bookings/" + 100).then().statusCode(404);
+  }
+
+  @Test
   public void testDeleteEndpoint() {
-    given().when().delete("/1").then().statusCode(204);
+    given().when().delete("/bookings/" + 1).then().statusCode(200);
   }
 
   @Test
   public void testDeleteNotFound() {
-    given().when().delete("/100").then().statusCode(404);
+    given().when().delete("/bookings/" + 100).then().statusCode(404);
   }
 
 }

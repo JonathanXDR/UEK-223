@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ch.zli.m223.model.Credential;
+import ch.zli.m223.model.dto.Credential;
 import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
@@ -19,11 +19,11 @@ public class AuthServiceTest {
   AuthService service;
 
   @Inject
-  TestDataService testDataService;
+  TestDataServiceTest testDataServiceTest;
 
   @BeforeEach
   public void reset() {
-    testDataService.generateTestData(null);
+    testDataServiceTest.generateTestData(null);
   }
 
   @Test

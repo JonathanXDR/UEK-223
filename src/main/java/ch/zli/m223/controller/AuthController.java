@@ -3,7 +3,7 @@ package ch.zli.m223.controller;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-import ch.zli.m223.model.Credential;
+import ch.zli.m223.model.dto.Credential;
 import ch.zli.m223.service.AuthService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;

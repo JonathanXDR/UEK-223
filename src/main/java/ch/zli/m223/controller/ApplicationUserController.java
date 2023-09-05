@@ -10,7 +10,6 @@ import ch.zli.m223.service.ApplicationUserService;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
-import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -50,7 +49,7 @@ public class ApplicationUserController {
   @Consumes(MediaType.APPLICATION_JSON)
   @PermitAll
   @Operation(summary = "Create a user", description = "Creates a user")
-  public ApplicationUser create(@Valid ApplicationUser applicationUser) {
+  public ApplicationUser create(ApplicationUser applicationUser) {
     return applicationUserService.createApplicationUser(applicationUser);
   }
 
@@ -59,7 +58,7 @@ public class ApplicationUserController {
   @Consumes(MediaType.APPLICATION_JSON)
   @Operation(summary = "Update a user", description = "Updates a user")
   @Path("/{id}")
-  public ApplicationUser update(@Valid ApplicationUser applicationUser, @PathParam("id") Long id) {
+  public ApplicationUser update(ApplicationUser applicationUser, @PathParam("id") Long id) {
     applicationUser.setId(id);
     return applicationUserService.updateApplicationUser(applicationUser);
   }

@@ -52,8 +52,8 @@ Alternativ kann das Projekt auch direkt über Maven gestartet werden.
 
 Die folgenden Ports sind in der Entwicklungsumgebung verfügbar:
 
-Webservice: <http://localhost:8080><br>
-PgAdmin: <http://localhost:5050><br>
+Webservice: <http://localhost:8080>  
+PgAdmin: <http://localhost:5050>  
 Swagger UI: <http://localhost:8080/swagger/>
 
 ### Testdaten
@@ -64,3 +64,5 @@ Es befindet sich in `src/main/java/ch/zli/m223/service/TestDataService.java`.
 ## Abweichungen der Planung
 
 1. Bei jeder Route wurde der HTTP-Statuscode 403 (Forbidden) hinzugefügt, falls die erforderlichen Berechtigungen nicht vorhanden sind. Dies ist in der Planung vergessen gegangen.
+
+2. Der Rückgabewert der Post & Put-Methoden wurde von `String` auf den entprechenden Entity geändert, damit man die erstellte/aktualisierte Entity direkt zurückbekommt.

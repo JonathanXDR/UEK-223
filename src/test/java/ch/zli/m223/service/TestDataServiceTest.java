@@ -16,20 +16,20 @@ import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 
-@IfBuildProfile("dev")
+@IfBuildProfile("test")
 @ApplicationScoped
-public class TestDataService {
+public class TestDataServiceTest {
 
   @Inject
   EntityManager entityManager;
 
   @Transactional
   public void clearData() {
-    entityManager.createNativeQuery("TRUNCATE TABLE public.\"ApplicationUser\" RESTART IDENTITY CASCADE")
+    entityManager.createNativeQuery("TRUNCATE TABLE \"ApplicationUser\" RESTART IDENTITY CASCADE")
         .executeUpdate();
-    entityManager.createNativeQuery("TRUNCATE TABLE public.\"Booking\" RESTART IDENTITY CASCADE")
+    entityManager.createNativeQuery("TRUNCATE TABLE \"Booking\" RESTART IDENTITY CASCADE")
         .executeUpdate();
-    entityManager.createNativeQuery("TRUNCATE TABLE public.\"Feedback\" RESTART IDENTITY CASCADE")
+    entityManager.createNativeQuery("TRUNCATE TABLE \"Feedback\" RESTART IDENTITY CASCADE")
         .executeUpdate();
   }
 

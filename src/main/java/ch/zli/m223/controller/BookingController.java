@@ -12,7 +12,6 @@ import ch.zli.m223.service.BookingService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
-import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -63,7 +62,7 @@ public class BookingController {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   @Operation(summary = "Create a booking", description = "Creates a new booking")
-  public Booking create(@Valid Booking booking) {
+  public Booking create(Booking booking) {
     var user = userService.findByEmail(securityContext.getUserPrincipal().getName());
     assert user.isPresent();
 
@@ -78,7 +77,7 @@ public class BookingController {
   @Operation(summary = "Update a booking", description = "Updates a booking")
   @Path("/{id}")
   @RolesAllowed("Admin")
-  public Booking update(@Valid Booking booking, @PathParam("id") Long id) {
+  public Booking update(Booking booking, @PathParam("id") Long id) {
     booking.setId(id);
     return bookingService.updateBooking(booking);
   }

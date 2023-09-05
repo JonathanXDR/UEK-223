@@ -11,7 +11,6 @@ import ch.zli.m223.service.FeedbackService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
-import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -57,7 +56,7 @@ public class FeedbackController {
   @Consumes(MediaType.APPLICATION_JSON)
   @Operation(summary = "Create a feedback", description = "Creates a new feedback")
   @RolesAllowed("Member")
-  public Feedback create(@Valid Feedback feedback) {
+  public Feedback create(Feedback feedback) {
     feedback.setDate();
     var user = userService.findByEmail(securityContext.getUserPrincipal().getName());
     assert user.isPresent();

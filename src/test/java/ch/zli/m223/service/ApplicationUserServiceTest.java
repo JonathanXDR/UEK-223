@@ -18,11 +18,11 @@ public class ApplicationUserServiceTest {
   ApplicationUserService service;
 
   @Inject
-  TestDataService testDataService;
+  TestDataServiceTest testDataServiceTest;
 
   @BeforeEach
   public void reset() {
-    testDataService.generateTestData(null);
+    testDataServiceTest.generateTestData(null);
   }
 
   @Test
@@ -33,7 +33,7 @@ public class ApplicationUserServiceTest {
 
   @Test
   public void firstUserIsAdmin() {
-    testDataService.clearData();
+    testDataServiceTest.clearData();
 
     var payload = new ApplicationUser("application-user-a@user.com", "User A first name", "User A last name",
         "ApplicationUserA", null);

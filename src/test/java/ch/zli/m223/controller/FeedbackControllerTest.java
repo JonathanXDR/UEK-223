@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ch.zli.m223.model.Feedback;
-import ch.zli.m223.service.TestDataService;
+import ch.zli.m223.service.TestDataServiceTest;
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.security.TestSecurity;
@@ -22,51 +22,56 @@ import jakarta.inject.Inject;
 public class FeedbackControllerTest {
 
   @Inject
-  TestDataService testDataService;
+  TestDataServiceTest testDataServiceTest;
 
   @BeforeEach
   public void reset() {
-    testDataService.generateTestData(null);
+    testDataServiceTest.generateTestData(null);
   }
 
   @Test
   public void testIndexEndpoint() {
-    given().when().get().then().statusCode(200).body(startsWith("[")).and().body(endsWith("]"));
+    given().when().get("/feedbacks").then().statusCode(200).body(startsWith("[")).and().body(endsWith("]"));
   }
 
   @Test
   public void testPostEndpoint() {
     var payload = new Feedback("Feedback A title", "Feedback A description", null);
 
-    given().when().contentType(ContentType.JSON).body(payload).post().then().statusCode(200)
+    given().when().contentType(ContentType.JSON).body(payload).post("/feedbacks").then().statusCode(200)
         .body("date", is(payload.getDate().toString())).body("title", is("Feedback A title"), "description",
             is("Feedback A description"));
   }
 
   @Test
-  public void testPostInvalid() {
+  public void testPostBadRequest() {
     var payload = new Feedback();
 
-    given().when().contentType(ContentType.JSON).body(payload).post().then().statusCode(400);
+    given().when().contentType(ContentType.JSON).body(payload).post("/feedbacks").then().statusCode(400);
   }
 
   @Test
   public void testPutEndpoint() {
     var payload = new Feedback("Feedback A title", "Feedback A description", null);
 
-    given().when().contentType(ContentType.JSON).body(payload).put("/1").then().statusCode(200)
+    given().when().contentType(ContentType.JSON).body(payload).put("/feedbacks" + 1).then().statusCode(200)
         .body("date", is(payload.getDate().toString())).body("title", is("Feedback A title"), "description",
             is("Feedback A description"));
   }
 
   @Test
+  public void testPutNotFound() {
+    given().when().delete("/feedbacks" + 100).then().statusCode(404);
+  }
+
+  @Test
   public void testDeleteEndpoint() {
-    given().when().delete("/1").then().statusCode(204);
+    given().when().delete("/feedbacks" + 1).then().statusCode(200);
   }
 
   @Test
   public void testDeleteNotFound() {
-    given().when().delete("/100").then().statusCode(404);
+    given().when().delete("/feedbacks" + 100).then().statusCode(404);
   }
 
 }

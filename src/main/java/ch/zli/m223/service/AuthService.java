@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 import ch.zli.m223.model.ApplicationUser;
-import ch.zli.m223.model.Credential;
+import ch.zli.m223.model.dto.Credential;
 import io.smallrye.jwt.build.Jwt;
 import io.smallrye.jwt.build.JwtClaimsBuilder;
 import jakarta.enterprise.context.ApplicationScoped;
