@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import ch.zli.m223.model.ApplicationUser;
-import ch.zli.m223.model.RoleEnum;
+import ch.zli.m223.model.enumeration.RoleEnum;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;

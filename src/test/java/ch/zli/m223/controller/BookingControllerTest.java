@@ -11,8 +11,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ch.zli.m223.model.Booking;
-import ch.zli.m223.model.StatusEnum;
-import ch.zli.m223.model.TimeFrameEnum;
+import ch.zli.m223.model.enumeration.StatusEnum;
+import ch.zli.m223.model.enumeration.TimeFrameEnum;
 import ch.zli.m223.service.TestDataServiceTest;
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;

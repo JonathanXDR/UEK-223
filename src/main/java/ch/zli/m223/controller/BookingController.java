@@ -6,7 +6,7 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import ch.zli.m223.model.Booking;
-import ch.zli.m223.model.StatusEnum;
+import ch.zli.m223.model.enumeration.StatusEnum;
 import ch.zli.m223.service.ApplicationUserService;
 import ch.zli.m223.service.BookingService;
 import jakarta.annotation.security.RolesAllowed;

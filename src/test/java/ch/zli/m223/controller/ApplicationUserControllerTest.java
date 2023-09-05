@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ch.zli.m223.model.ApplicationUser;
-import ch.zli.m223.model.RoleEnum;
+import ch.zli.m223.model.enumeration.RoleEnum;
 import ch.zli.m223.service.TestDataServiceTest;
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;

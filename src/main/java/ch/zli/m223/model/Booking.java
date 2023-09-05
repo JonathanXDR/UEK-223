@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
+import ch.zli.m223.model.enumeration.StatusEnum;
+import ch.zli.m223.model.enumeration.TimeFrameEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

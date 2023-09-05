@@ -1,4 +1,4 @@
-package ch.zli.m223.model;
+package ch.zli.m223.model.enumeration;
 
 public enum StatusEnum {
   PENDING,
