@@ -2,8 +2,6 @@ package ch.zli.m223.service;
 
 import java.time.LocalDate;
 
-import javax.inject.Inject;
-
 import ch.zli.m223.model.ApplicationUser;
 import ch.zli.m223.model.Booking;
 import ch.zli.m223.model.RoleEnum;
@@ -13,6 +11,7 @@ import io.quarkus.arc.profile.IfBuildProfile;
 import io.quarkus.runtime.StartupEvent;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Observes;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 

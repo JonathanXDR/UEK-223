@@ -32,8 +32,7 @@ public class FeedbackService {
   }
 
   @Transactional
-  public String createFeedback(Feedback feedback) {
-    entityManager.persist(feedback);
-    return "Feedback created successfully";
+  public Feedback createFeedback(Feedback feedback) {
+    return entityManager.merge(feedback);
   }
 }

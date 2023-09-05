@@ -33,13 +33,13 @@ public class FeedbackController {
 
   @Inject
   @RequestScoped
-  SecurityContext ctx;
+  SecurityContext securityContext;
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   @Operation(summary = "Get all feedbacks", description = "Returns all feedbacks")
   @RolesAllowed("Admin")
-  public List<Feedback> index() {
+  public List<Feedback> findAll() {
     return feedbackService.findAll();
   }
 
@@ -48,7 +48,7 @@ public class FeedbackController {
   @Operation(summary = "Get a feedback", description = "Return one feedback")
   @Path("/{id}")
   @RolesAllowed("Admin")
-  public Feedback show(@PathParam("id") Long id) {
+  public Feedback findOne(@PathParam("id") Long id) {
     return feedbackService.findById(id);
   }
 
@@ -57,8 +57,9 @@ public class FeedbackController {
   @Consumes(MediaType.APPLICATION_JSON)
   @Operation(summary = "Create a feedback", description = "Creates a new feedback")
   @RolesAllowed("Member")
-  public String create(@Valid Feedback feedback) {
-    var user = userService.findByEmail(ctx.getUserPrincipal().getName());
+  public Feedback create(@Valid Feedback feedback) {
+    feedback.setDate();
+    var user = userService.findByEmail(securityContext.getUserPrincipal().getName());
     assert user.isPresent();
     feedback.setApplicationUser(user.get());
     return feedbackService.createFeedback(feedback);

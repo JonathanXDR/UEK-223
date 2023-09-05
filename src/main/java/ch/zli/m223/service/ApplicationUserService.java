@@ -51,11 +51,11 @@ public class ApplicationUserService {
   }
 
   @Transactional
-  public String createApplicationUser(
-      ApplicationUser applicationUser) {
+  public ApplicationUser createApplicationUser(ApplicationUser applicationUser) {
     CriteriaBuilder cb = entityManager.getCriteriaBuilder();
     CriteriaQuery<Long> cq = cb.createQuery(Long.class);
     cq.select(cb.count(cq.from(ApplicationUser.class)));
+
     var count = entityManager.createQuery(cq).getSingleResult();
 
     if (count == 0) {
@@ -64,18 +64,15 @@ public class ApplicationUserService {
       applicationUser.setRole(RoleEnum.MEMBER);
     }
 
-    entityManager.persist(applicationUser);
-    return "User created successfully";
+    return entityManager.merge(applicationUser);
   }
 
   @Transactional
-  public String updateApplicationUser(Long id) {
-    var applicationUser = entityManager.find(ApplicationUser.class, id);
+  public ApplicationUser updateApplicationUser(ApplicationUser applicationUser) {
     if (applicationUser == null) {
       throw new NotFoundException("User not found");
     }
-    entityManager.merge(applicationUser);
-    return "User updated successfully";
+    return entityManager.merge(applicationUser);
   }
 
   @Transactional

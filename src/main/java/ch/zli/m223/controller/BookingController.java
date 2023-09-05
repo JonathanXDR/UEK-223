@@ -36,20 +36,26 @@ public class BookingController {
 
   @Inject
   @RequestScoped
-  SecurityContext ctx;
+  SecurityContext securityContext;
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   @Operation(summary = "Get all bookings", description = "Returns all bookings")
-  public List<Booking> index() {
-    return bookingService.findAll();
+  public List<Booking> findAll() {
+    if (securityContext.isUserInRole("Admin")) {
+      return bookingService.findAll();
+    } else {
+      var user = userService.findByEmail(securityContext.getUserPrincipal().getName());
+      assert user.isPresent();
+      return bookingService.findAllByUser(user.get());
+    }
   }
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   @Operation(summary = "Get a booking", description = "Return one booking")
   @Path("/{id}")
-  public Booking show(@PathParam("id") Long id) {
+  public Booking findOne(@PathParam("id") Long id) {
     return bookingService.findById(id);
   }
 
@@ -57,9 +63,10 @@ public class BookingController {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   @Operation(summary = "Create a booking", description = "Creates a new booking")
-  public String create(@Valid Booking booking) {
-    var user = userService.findByEmail(ctx.getUserPrincipal().getName());
+  public Booking create(@Valid Booking booking) {
+    var user = userService.findByEmail(securityContext.getUserPrincipal().getName());
     assert user.isPresent();
+
     booking.setApplicationUser(user.get());
     booking.setStatus(StatusEnum.PENDING);
     return bookingService.createBooking(booking);
@@ -71,9 +78,9 @@ public class BookingController {
   @Operation(summary = "Update a booking", description = "Updates a booking")
   @Path("/{id}")
   @RolesAllowed("Admin")
-  public String update(@Valid Booking booking, @PathParam("id") Long id) {
+  public Booking update(@Valid Booking booking, @PathParam("id") Long id) {
     booking.setId(id);
-    return bookingService.updateBooking(id);
+    return bookingService.updateBooking(booking);
   }
 
   @DELETE

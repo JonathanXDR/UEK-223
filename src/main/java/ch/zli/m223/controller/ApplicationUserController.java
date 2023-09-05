@@ -32,7 +32,7 @@ public class ApplicationUserController {
   @Produces(MediaType.APPLICATION_JSON)
   @Operation(summary = "Get all users", description = "Returns all users")
   @RolesAllowed("Admin")
-  public List<ApplicationUser> index() {
+  public List<ApplicationUser> findAll() {
     return applicationUserService.findAll();
   }
 
@@ -41,7 +41,7 @@ public class ApplicationUserController {
   @Operation(summary = "Get a user", description = "Return one user")
   @Path("/{id}")
   @RolesAllowed("Admin")
-  public ApplicationUser show(@PathParam("id") Long id) {
+  public ApplicationUser findOne(@PathParam("id") Long id) {
     return applicationUserService.findById(id);
   }
 
@@ -50,8 +50,7 @@ public class ApplicationUserController {
   @Consumes(MediaType.APPLICATION_JSON)
   @PermitAll
   @Operation(summary = "Create a user", description = "Creates a user")
-  public String create(@Valid ApplicationUser applicationUser) {
-    applicationUser.setPassword(applicationUser.getPassword());
+  public ApplicationUser create(@Valid ApplicationUser applicationUser) {
     return applicationUserService.createApplicationUser(applicationUser);
   }
 
@@ -60,12 +59,9 @@ public class ApplicationUserController {
   @Consumes(MediaType.APPLICATION_JSON)
   @Operation(summary = "Update a user", description = "Updates a user")
   @Path("/{id}")
-  public String update(
-      @Valid ApplicationUser applicationUser,
-      @PathParam("id") Long id) {
-    applicationUser.setPassword(applicationUser.getPassword());
+  public ApplicationUser update(@Valid ApplicationUser applicationUser, @PathParam("id") Long id) {
     applicationUser.setId(id);
-    return applicationUserService.updateApplicationUser(id);
+    return applicationUserService.updateApplicationUser(applicationUser);
   }
 
   @DELETE
