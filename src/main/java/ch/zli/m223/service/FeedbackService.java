@@ -35,9 +35,9 @@ public class FeedbackService {
   }
 
   @Transactional
-  public Feedback updateFeedback(Feedback newfeedback) {
-    entityManager.merge(newfeedback);
-    return newfeedback;
+  public Feedback updateFeedback(Feedback feedback) {
+    entityManager.merge(feedback);
+    return feedback;
   }
 
   @Transactional

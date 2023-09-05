@@ -35,9 +35,9 @@ public class BookingService {
   }
 
   @Transactional
-  public Booking updateBooking(Booking newbooking) {
-    entityManager.merge(newbooking);
-    return newbooking;
+  public Booking updateBooking(Booking booking) {
+    entityManager.merge(booking);
+    return booking;
   }
 
   @Transactional

@@ -17,7 +17,7 @@ import jakarta.ws.rs.core.NewCookie;
 import jakarta.ws.rs.core.Response;
 
 @ApplicationScoped
-public class SessionService {
+public class AuthService {
 
   @Inject
   ApplicationUserService applicationUserService;
