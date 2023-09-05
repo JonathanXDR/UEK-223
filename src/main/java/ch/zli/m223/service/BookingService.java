@@ -17,35 +17,43 @@ public class BookingService {
 
   public List<Booking> findAll() {
     var query = entityManager.createQuery("FROM Booking", Booking.class);
+    if (query == null) {
+      throw new NotFoundException("No bookings found");
+    }
     return query.getResultList();
   }
 
   public Booking findById(Long id) {
     var booking = entityManager.find(Booking.class, id);
     if (booking == null) {
-      throw new NotFoundException();
+      throw new NotFoundException("Booking not found");
     }
     return booking;
   }
 
   @Transactional
-  public Booking createBooking(Booking booking) {
+  public String createBooking(Booking booking) {
     entityManager.persist(booking);
-    return booking;
+    return "Booking created successfully";
   }
 
   @Transactional
-  public Booking updateBooking(Booking booking) {
-    entityManager.merge(booking);
-    return booking;
-  }
-
-  @Transactional
-  public void deleteBooking(Long id) {
+  public String updateBooking(Long id) {
     var booking = entityManager.find(Booking.class, id);
     if (booking == null) {
-      throw new NotFoundException();
+      throw new NotFoundException("Booking not found");
+    }
+    entityManager.merge(booking);
+    return "Booking updated successfully";
+  }
+
+  @Transactional
+  public String deleteBooking(Long id) {
+    var booking = entityManager.find(Booking.class, id);
+    if (booking == null) {
+      throw new NotFoundException("Booking not found");
     }
     entityManager.remove(booking);
+    return "Booking deleted successfully";
   }
 }

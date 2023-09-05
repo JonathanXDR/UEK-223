@@ -23,7 +23,6 @@ import jakarta.ws.rs.core.SecurityContext;
 
 @Path("/feedbacks")
 @Tag(name = "Feedbacks", description = "Handling of feedbacks")
-@RolesAllowed({ "Member", "Admin" })
 public class FeedbackController {
 
   @Inject
@@ -39,6 +38,7 @@ public class FeedbackController {
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   @Operation(summary = "Get all feedbacks", description = "Returns all feedbacks")
+  @RolesAllowed("Admin")
   public List<Feedback> index() {
     return feedbackService.findAll();
   }
@@ -47,6 +47,7 @@ public class FeedbackController {
   @Produces(MediaType.APPLICATION_JSON)
   @Operation(summary = "Get a feedback", description = "Return one feedback")
   @Path("/{id}")
+  @RolesAllowed("Admin")
   public Feedback show(@PathParam("id") Long id) {
     return feedbackService.findById(id);
   }
@@ -55,7 +56,8 @@ public class FeedbackController {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   @Operation(summary = "Create a feedback", description = "Creates a new feedback")
-  public Feedback create(@Valid Feedback feedback) {
+  @RolesAllowed("Member")
+  public String create(@Valid Feedback feedback) {
     var user = userService.findByEmail(ctx.getUserPrincipal().getName());
     assert user.isPresent();
     feedback.setApplicationUser(user.get());

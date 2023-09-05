@@ -34,7 +34,6 @@ public class AuthService {
             .upn(credential.getEmail())
             .groups(new HashSet<>(Arrays.asList("User", "Admin")))
             .expiresIn(Duration.ofHours(12));
-
         setRoles(jwt, principal.get());
 
         String token = jwt.sign();
@@ -57,8 +56,10 @@ public class AuthService {
     switch (user.getRole()) {
       case ADMIN:
         roles.add("Admin");
+        break;
       case MEMBER:
         roles.add("Member");
+        break;
     }
     jwt.groups(new HashSet<>(roles));
   }

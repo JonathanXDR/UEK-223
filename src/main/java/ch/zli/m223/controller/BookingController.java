@@ -26,7 +26,6 @@ import jakarta.ws.rs.core.SecurityContext;
 
 @Path("/bookings")
 @Tag(name = "Bookings", description = "Handling of bookings")
-@RolesAllowed({ "Member", "Admin" })
 public class BookingController {
 
   @Inject
@@ -58,7 +57,7 @@ public class BookingController {
   @Produces(MediaType.APPLICATION_JSON)
   @Consumes(MediaType.APPLICATION_JSON)
   @Operation(summary = "Create a booking", description = "Creates a new booking")
-  public Booking create(@Valid Booking booking) {
+  public String create(@Valid Booking booking) {
     var user = userService.findByEmail(ctx.getUserPrincipal().getName());
     assert user.isPresent();
     booking.setApplicationUser(user.get());
@@ -71,16 +70,16 @@ public class BookingController {
   @Consumes(MediaType.APPLICATION_JSON)
   @Operation(summary = "Update a booking", description = "Updates a booking")
   @Path("/{id}")
-  public Booking update(@Valid Booking booking, @PathParam("id") Long id) {
+  @RolesAllowed("Admin")
+  public String update(@Valid Booking booking, @PathParam("id") Long id) {
     booking.setId(id);
-    return bookingService.updateBooking(booking);
+    return bookingService.updateBooking(id);
   }
 
   @DELETE
   @Operation(summary = "Delete a booking", description = "Deletes a booking")
   @Path("/{id}")
-  public void delete(@PathParam("id") Long id) {
-    bookingService.deleteBooking(id);
+  public String delete(@PathParam("id") Long id) {
+    return bookingService.deleteBooking(id);
   }
-
 }

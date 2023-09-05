@@ -17,35 +17,23 @@ public class FeedbackService {
 
   public List<Feedback> findAll() {
     var query = entityManager.createQuery("FROM Feedback", Feedback.class);
+    if (query == null) {
+      throw new NotFoundException("No feedbacks found");
+    }
     return query.getResultList();
   }
 
   public Feedback findById(Long id) {
     var feedback = entityManager.find(Feedback.class, id);
     if (feedback == null) {
-      throw new NotFoundException();
+      throw new NotFoundException("Feedback not found");
     }
     return feedback;
   }
 
   @Transactional
-  public Feedback createFeedback(Feedback feedback) {
+  public String createFeedback(Feedback feedback) {
     entityManager.persist(feedback);
-    return feedback;
-  }
-
-  @Transactional
-  public Feedback updateFeedback(Feedback feedback) {
-    entityManager.merge(feedback);
-    return feedback;
-  }
-
-  @Transactional
-  public void deleteFeedback(Long id) {
-    var feedback = entityManager.find(Feedback.class, id);
-    if (feedback == null) {
-      throw new NotFoundException();
-    }
-    entityManager.remove(feedback);
+    return "Feedback created successfully";
   }
 }

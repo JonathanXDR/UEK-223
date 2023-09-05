@@ -40,6 +40,7 @@ public class ApplicationUserController {
   @Produces(MediaType.APPLICATION_JSON)
   @Operation(summary = "Get a user", description = "Return one user")
   @Path("/{id}")
+  @RolesAllowed("Admin")
   public ApplicationUser show(@PathParam("id") Long id) {
     return applicationUserService.findById(id);
   }
@@ -49,7 +50,7 @@ public class ApplicationUserController {
   @Consumes(MediaType.APPLICATION_JSON)
   @PermitAll
   @Operation(summary = "Create a user", description = "Creates a user")
-  public ApplicationUser create(@Valid ApplicationUser applicationUser) {
+  public String create(@Valid ApplicationUser applicationUser) {
     applicationUser.setPassword(applicationUser.getPassword());
     return applicationUserService.createApplicationUser(applicationUser);
   }
@@ -59,13 +60,12 @@ public class ApplicationUserController {
   @Consumes(MediaType.APPLICATION_JSON)
   @Operation(summary = "Update a user", description = "Updates a user")
   @Path("/{id}")
-  @RolesAllowed("Admin")
-  public ApplicationUser update(
+  public String update(
       @Valid ApplicationUser applicationUser,
       @PathParam("id") Long id) {
     applicationUser.setPassword(applicationUser.getPassword());
     applicationUser.setId(id);
-    return applicationUserService.updateApplicationUser(applicationUser);
+    return applicationUserService.updateApplicationUser(id);
   }
 
   @DELETE
@@ -75,5 +75,4 @@ public class ApplicationUserController {
   public void delete(@PathParam("id") Long id) {
     applicationUserService.deleteApplicationUser(id);
   }
-
 }

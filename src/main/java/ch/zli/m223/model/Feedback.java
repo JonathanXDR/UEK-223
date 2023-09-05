@@ -34,6 +34,7 @@ public class Feedback {
   private String description;
 
   @ManyToOne
+  @Schema(readOnly = true)
   private ApplicationUser applicationUser;
 
   public Feedback(
