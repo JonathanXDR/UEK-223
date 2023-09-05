@@ -1,8 +1,14 @@
-commit 5cd363fda9249548f54c1071291f836eba2ef973
+commit 62f895533e8d3b6b89d08174bec040226d897fe8
 Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
-Date:   Tue Sep 5 16:15:50 2023 +0200
+Date:   Tue Sep 5 16:23:07 2023 +0200
 
-    chore(docs): update README
+    chore(cleanup): update folder structure
+
+commit aee716b04fd46e32d71f6ba6fc57673432dde1a7
+Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
+Date:   Tue Sep 5 16:18:35 2023 +0200
+
+    feat(logs): add gitLogs file
 
 commit f40c60733568b3c4161a8dbbfd7a23eddd550d2b
 Author: Jonathan Russ <jonathan.russ@edu.tbz.ch>
