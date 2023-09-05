@@ -32,7 +32,7 @@ public class TestDataService {
         }
 
         @Transactional
-        void generateTestData(@Observes StartupEvent event) {
+        public void generateTestData(@Observes StartupEvent event) {
                 clearData();
 
                 // ApplicationUsers
@@ -56,11 +56,11 @@ public class TestDataService {
                                 ApplicationUserA);
                 entityManager.persist(BookingA);
 
-                var BookingB = new Booking(LocalDate.now(), TimeFrameEnum.AFTERNOON, StatusEnum.CONFIRMED,
+                var BookingB = new Booking(LocalDate.now().plusDays(3), TimeFrameEnum.AFTERNOON, StatusEnum.CONFIRMED,
                                 ApplicationUserB);
                 entityManager.persist(BookingB);
 
-                var BookingC = new Booking(LocalDate.now(), TimeFrameEnum.FULL_DAY, StatusEnum.DECLINED,
+                var BookingC = new Booking(LocalDate.now().plusDays(5), TimeFrameEnum.FULL_DAY, StatusEnum.DECLINED,
                                 ApplicationUserC);
                 entityManager.persist(BookingC);
 
