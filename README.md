@@ -58,8 +58,9 @@ Swagger UI: <http://localhost:8080/swagger/>
 
 ### Testdaten
 
-Es ist ein Testdatenset definiert, welches für die Developmentumgebung automatisch geladen wird.
-Es befindet sich in `src/main/java/ch/zli/m223/service/TestDataService.java`.
+Es ist sind zwei Testdatensets definiert, welche automatisch für die jeweilige Umgebung geladen werden.
+
+TestDataService.java: `src/main/java/ch/zli/m223/service/TestDataService.java` TestDataServiceTest.java: `src/test/java/ch/zli/m223/service/TestDataServiceTest.java`
 
 ## Abweichungen der Planung
 
