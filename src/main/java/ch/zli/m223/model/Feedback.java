@@ -11,7 +11,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Feedback {
@@ -21,8 +20,8 @@ public class Feedback {
   @Schema(readOnly = true)
   private Long id;
 
-  @Column(nullable = false)
-  @NotNull
+  @Column(nullable = true)
+  @Schema(readOnly = true)
   private LocalDate date;
 
   @Column(nullable = false)
@@ -41,7 +40,6 @@ public class Feedback {
       String title,
       String description,
       ApplicationUser applicationUser) {
-    this.date = LocalDate.now();
     this.title = title;
     this.description = description;
     this.applicationUser = applicationUser;
@@ -62,7 +60,7 @@ public class Feedback {
     return date;
   }
 
-  public void setDate(LocalDate date) {
+  public void setDate() {
     this.date = LocalDate.now();
   }
 
